@@ -6,3 +6,5 @@ function sum(a, b) {
 }
 
 exports.sum = sum;
+
+//wed = Day 3
