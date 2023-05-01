@@ -1,1 +1,6 @@
-//Postman is an API platform for building and using APIs. 
+Postman = is an API platform for building and using APIs. 
+
+Data Formats :  Json is best as it lighther weight & easy to write
+JSON = Javascript Object Notation
+XML = Xtensible Markup Language
+HTML 
