@@ -4,3 +4,7 @@ Data Formats :  Json is best as it lighther weight & easy to write
 JSON = Javascript Object Notation
 XML = Xtensible Markup Language
 HTML 
+
+
+Days-9 (Cet request with node Modlue) :-)
+WeatherProject
