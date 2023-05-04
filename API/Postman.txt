@@ -11,3 +11,12 @@ WeatherProject
 
 Day - 10 = Further with 
 Day-11 = Further Development
+
+to adding the static CSS & Images : ------------------------
+app.use(express.static("Public"));
+
+😀Create a public folder & place the images and CSS there
+😊Listen
+😁get
+🤣Post
+😊use - for Body PArser
