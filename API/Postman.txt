@@ -22,3 +22,5 @@ app.use(express.static("Public"));
 😊use - for Body PArser
 
 Day - 12 - Completing the sign up pages
+
+Day - 13 - resue Updated with the latest Color
