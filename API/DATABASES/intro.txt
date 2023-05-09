@@ -1,1 +1,14 @@
-DataBase : 
+DataBase : Main two types of DB
+1. SQL=Relational (Stuctured) = (At empty places it Automatically Place NULL) -> MySQL & PostgreSQL
+#for showinf sales + products + curtomer Relations
+*Less Scalable - > Scale Verically
+*Table Structure
+*Requre Schema
+
+
+
+2. NoSQL = Non Relational (No strucutre) -> mongoDB & redis (As a JSON Object)
+#for showing many relations = FOr eg. Instagram
+*More Scalable ->  > Scale Horizontally
+*Document Structure
+*More Flexible
