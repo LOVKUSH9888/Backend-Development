@@ -12,3 +12,6 @@ DataBase : Main two types of DB
 *More Scalable ->  > Scale Horizontally
 *Document Structure
 *More Flexible
+
+
+Date - 10.5.23 = My SQL = further
