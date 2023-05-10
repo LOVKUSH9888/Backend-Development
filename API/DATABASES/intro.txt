@@ -6,6 +6,10 @@ DataBase : Main two types of DB
 *Requre Schema
 
 
+https://sqliteonline.com/ 
+CRUD - Operation
+FOREIGN KEY = For showing Relationship
+
 
 2. NoSQL = Non Relational (No strucutre) -> mongoDB & redis (As a JSON Object)
 #for showing many relations = FOr eg. Instagram
