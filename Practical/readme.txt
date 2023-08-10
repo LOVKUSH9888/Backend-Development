@@ -37,3 +37,24 @@ mern-crud-app/
 │   └── ...
 ├── package.json
 └── ...
+
+
+5.Backend - Express Server:
+
+In the backend folder:
+
+models/user.js: Define a basic user schema using Mongoose.
+routes/api.js: Create API routes for handling user-related CRUD operations.
+server.js: Set up the Express server, connect to MongoDB, and configure middleware.
+Frontend - React App:
+
+6. In the frontend folder:
+
+src/components/LoginForm.js: Create a simple login form with username and password fields.
+src/App.js: Set up the main React component, import the LoginForm, and render it.
+src/index.js: Render the App component into the HTML root element.
+Explanation:
+
+7. MongoDB: MongoDB is used to store user data. 
+ it stores user data with the help of Mongoose, which simplifies the interaction between the Node.js application and the MongoDB database. 
+ The user schema and model are defined in the user.js.allowing us to create, read, update, and delete user records in the MongoDB collection.

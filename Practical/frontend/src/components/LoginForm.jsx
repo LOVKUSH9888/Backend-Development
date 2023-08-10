@@ -11,7 +11,7 @@ function LoginForm() {
     // For now, we'll just log a message
     console.log('Entered Username:', name);
     console.log('Entered Password:', password);
-    console.log("Login successful");
+    alert("Login successful");
   };
 
   return (
