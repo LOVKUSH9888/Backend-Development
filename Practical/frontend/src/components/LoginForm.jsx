@@ -15,6 +15,7 @@ function LoginForm() {
   };
 
   return (
+    <div style={{color: "red", textAlign : "center"}}>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -32,6 +33,7 @@ function LoginForm() {
       <br></br>
       <button type="submit">Submit</button>
     </form>
+    </div>
   );
 }
 
