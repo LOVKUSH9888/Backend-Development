@@ -58,3 +58,56 @@ Explanation:
 7. MongoDB: MongoDB is used to store user data. 
  it stores user data with the help of Mongoose, which simplifies the interaction between the Node.js application and the MongoDB database. 
  The user schema and model are defined in the user.js.allowing us to create, read, update, and delete user records in the MongoDB collection.
+
+
+//Older code
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import FormComponent from './components/FormComponent';
+import UserListComponent from './components/UserListComponent';
+
+function App() {
+  const [users, setUsers] = useState([]);
+
+  const handleSubmit = async (e, formData) => {
+    e.preventDefault();
+    const response = await fetch('http://localhost:8080/demo', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+    getUsers();
+  };
+
+  const getUsers = async () => {
+    const response = await fetch('http://localhost:8080/demo', {
+      method: 'GET'
+    });
+    const data = await response.json();
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  return (
+    <div className="app-container">
+      <h1>React User Management</h1>
+      <div className="form-container">
+        <h2>Add User</h2>
+        <FormComponent onSubmit={handleSubmit} />
+      </div>
+      <div className="user-list-container">
+        <h2>User List</h2>
+        <UserListComponent users={users} />
+      </div>
+    </div>
+  );
+}
+
+export default App;

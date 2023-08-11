@@ -1,0 +1,14 @@
+.user-list-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .user-list-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-list-container li {
+    margin-bottom: 10px;
+  }
+  
