@@ -1,0 +1,4 @@
+MongoDB Atlas
+usename = lky9888
+password = Football9888
+Connection String = mongodb+srv://lky9888:<password>@cluster0.uxqpgyd.mongodb.net/?retryWrites=true&w=majority
