@@ -1,81 +1,46 @@
-//Import Area 
 const express = require("express");
-const app = express();
-
-//for parsing the Json
-const bodyParser = require('body-parser');
-
-//Importing the mongoose
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 
-//Importing the .env
-require("dotenv").config();
+const app = express();
+dotenv.config();
 
-//using the .env variable
-const port = process.env.PORT || 5000;
-
-
-//Using the JSON middleware
+//Using Middleware
 app.use(bodyParser.json());
+app.use(express.json());
 
-
-
-
-//Adding the connection String
-const dbUrl = `mongodb+srv://lky9888:Lov9888@crud.nnzgqii.mongodb.net/?retryWrites=true&w=majority`;
-
-//Connecting to the database-server
+// Connecting to MongoDB
 mongoose
-  .connect(dbUrl)
-  .then((d) => {
-    console.log("connected");
-  })
-  .catch((e) => {
-    console.log("error");
-  });
+  .connect(`mongodb://127.0.0.1:27017/crud`)
+  .then((d) => console.log("connected"))
+  .catch((e) => console.log("error", e));
 
-
-/*const Cat = mongoose.model('Cat', { name: String });
-
-const kitty = new Cat({ name: 'Zildjian' });
-kitty.save().then(() => console.log('meow'));*/
-
-//Creating a Schema = Its a class creation
-/* const taskSchema = mongoose.model('taskSchema', {
-    title: String,
-    description: String
-}) */
-
-//Now creating the Object from the above class 
-const Task = mongoose.model('Task', {
-    title: String,
-    description: String
+//Creating a Schema
+// Create a schema for your data (e.g., a simple Task schema)
+const taskSchema = new mongoose.Schema({
+  title: String,
+  description: String,
 });
 
+const Task = mongoose.model("Task", taskSchema);
 
 // Create a new task
-app.post('/tasks', (req, res) => {
-    const newTask = {
-      title: req.body.title,
-      description: req.body.description,
-    };
-  
-    Task.create(newTask, (err, task) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Internal Server Error' });
-      } else {
-        res.status(201).json(task);
-      }
-    });
-  });
-  
+//object.method(string,function);
+//app.method();
 
-
-
-//Listening on port
-app.listen(port, (req, res) => {
-  console.log(`Server is running on port ${port}`);
+//Creating API-ENDPoints-Routes
+app.get("/", function (req, res) {
+  /* res.status(200)
+  res.send('Hello World')*/
+  //Or simply
+  //res.status(200).send(("Lovkush"))
+  res.status(200).json({ message: "Hello world again!", name: "Lovkush", Class: "10th" });
 });
 
+// Listening on port 5000 by default or a custom port from environment variable
+const port = process.env.PORT || 5000;
 
+app.listen(port, () => {
+  console.log("Server is listening on port", port);
+});
