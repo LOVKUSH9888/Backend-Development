@@ -12,16 +12,16 @@ app.use(express.json());
 
 // Connecting to MongoDB
 // ### Database Connection = By Connection String
-// *** mongoose.connect('mongodb://127.0.0.1:27017/test'); Which returns a Promise
+// mongoose.connect('mongodb://127.0.0.1:27017/test'); Which returns a Promise
 mongoose
   .connect(`mongodb://127.0.0.1:27017/crud`)
   .then((d) => console.log("connected"))
   .catch((e) => console.log("error", e));
 
 // ### the save method, which returns a promise.
-// *** kitty.save().then(() => console.log('meow')); */
+// kitty.save().then(() => console.log('meow')); */
 
-//Creating a Schema
+// Creating a Schema
 
 // ### Creating Object => const person = new Object();
 // class Person {
@@ -36,7 +36,7 @@ mongoose
 // console.log(person.firstName); // testFirstName
 // console.log(person.lastName); // testLastName
 
-// *** const kitty = new Cat({ name: 'Zildjian' });
+// const kitty = new Cat({ name: 'Zildjian' });
 let studentSchema = new mongoose.Schema(
   {
     StudentId: Number,
@@ -52,47 +52,86 @@ let studentSchema = new mongoose.Schema(
 
 // ### Defining a Model: = Method.
 // *** const Cat = mongoose.model('Cat', { name: String });
-const Task = mongoose.model("Task", studentSchema);
+const Student = mongoose.model("Student", studentSchema);
 
-//Testing
+//Testing-1
 //object.method(string,function);
 //app.method();
 app.get("/test", (req, res) => {
-  res.status(200).send("LOVKUSH");
+  const name = req.query.name || "DefaultName"; // Provide a default value if 'name' is missing
+  console.log(typeof name);
+  res.status(200).send(name + " LOVKUSH");
 });
 
-//C = CREATE
+//Testing 2 :-
+app.post("/test2", function(req, res){
+  console.log(req.body.name);
+  const name = req.body.name
+  res.status(200).send(name)
+})
+
+//FIXME: C = CREATE
+// This code handles a GET request to the "/api/student/create" route
 app.get("/api/student/create", (req, res) => {
+  // Log the "Name" query parameter from the request
   console.log(req.query.Name);
 
+  // Check if the "Name" query parameter is not undefined
   if (req.query.Name !== undefined) {
+    // If the "Name" parameter is provided, create a new Student object
     let studentObject = new Student({
-      StudentId: 1,
-      Name: "Lovkush",
-      Roll: 1,
-      Birthday: 2000,
-      Address: chandigarh,
+      StudentId: req.query.StudentId,
+      Name: req.query.Name,
+      Roll: req.query.Roll,
+      Birthday: req.query.Birthday,
+      Address: req.query.Address,
     });
+
+    // Save the new student object to a database (assuming "Student" is a model or schema)
     studentObject
       .save()
       .then((d) => {
+        // If the student is successfully saved, log a message and send a 201 (Created) response
         console.log("Saved");
         res.status(201).json({
           msg: "Student Created",
         });
       })
       .catch((e) => {
+        // If there's an error while saving the student, send a 400 (Bad Request) response with an error message
         res.status(400).json({
           msg: "error",
           error: e,
         });
       });
   } else {
+    // If the "Name" query parameter is missing, send a 400 (Bad Request) response with an error message
     res.status(400).json({
       msg: "Query Parameters are required",
     });
   }
 });
+
+// FIXME: READ = R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Creating API-ENDPoints-Routes
 // app.get("/", function (req, res) {
