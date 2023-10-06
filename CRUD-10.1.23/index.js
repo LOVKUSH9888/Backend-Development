@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
 
-//Using Middleware
+// todo: Using Middleware
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -37,6 +37,8 @@ mongoose
 // console.log(person.lastName); // testLastName
 
 // const kitty = new Cat({ name: 'Zildjian' });
+
+///Model Schema
 let studentSchema = new mongoose.Schema(
   {
     StudentId: Number,
@@ -64,11 +66,11 @@ app.get("/test", (req, res) => {
 });
 
 //Testing 2 :-
-app.post("/test2", function(req, res){
+app.post("/test2", function (req, res) {
   console.log(req.body.name);
-  const name = req.body.name
-  res.status(200).send(name)
-})
+  const name = req.body.name;
+  res.status(200).send(name);
+});
 
 //FIXME: C = CREATE
 // This code handles a GET request to the "/api/student/create" route
@@ -114,34 +116,45 @@ app.get("/api/student/create", (req, res) => {
 
 // FIXME: READ = R
 
+app.get("/api/getAllStudents", (req, res) => {
+  //db.collection.find()
+  //Model.find();
 
+  //db.collection = Model
 
+  Student.find()
+    .then((d) => {
+      res.status(200).json({
+        mgs: "ok",
+        data: d,
+      });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        mgs: "err" + e,
+      });
+    });
+});
 
+//FIXME: DELETE = D
+app.delete("/api/student/:studentId", (req, res) => {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  console.log(req.params.studentId);
+  res.status(200).json({
+    name : "love"
+  })
+  
+})
 
 //Creating API-ENDPoints-Routes
 // app.get("/", function (req, res) {
 //   /* res.status(200)
-//   res.send('Hello World')*/
-//   //Or simply
-//   //res.status(200).send(("Lovkush"))
-//   // console.log(req.query); //Object.propery = req.query
-//   // console.log(req.query.name);
-//   // console.log(req.query.surname);
+// res.send('Hello World')
+//Or simply
+//res.status(200).send(("Lovkush"))
+// console.log(req.query); //Object.propery = req.query
+// console.log(req.query.name);
+// console.log(req.query.surname);
 //   res
 //     .status(200)
 //     .json({ message: "Hello world again!", name: "Lovkush", Class: "10th" });
