@@ -1,14 +1,21 @@
-async function demo() {
-    // const link = await fetch(`https://jsonplaceholder.typicode.com/users`)
-    // const apiResponse = await response.json()
-    // return apiResponse;
-    return (await fetch(`https://jsonplaceholder.typicode.com/users`)).json();
+async function imp() {
+  try {
+    const apiLink = await fetch(`https://jsonplaceholder.typicode.com/users`);
+    const apiResponse = await apiLink.json();
+    // Returning the response here
+    return apiResponse;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error or return a rejected Promise
+  }
 }
 
-console.log(demo());
-
-demo().then((d) => {
-    console.log(d);
-}).catch((e) => {
-    console.log(e);
-})
+// Calling the api function
+imp()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    // Handle the error here if needed
+    console.error("Error:", error);
+  });
