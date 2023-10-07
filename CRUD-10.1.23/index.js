@@ -8,6 +8,8 @@ dotenv.config();
 
 // todo: Using Middleware
 app.use(bodyParser.json());
+
+//As we are using the JSON payload
 app.use(express.json());
 
 // Connecting to MongoDB
@@ -138,13 +140,78 @@ app.get("/api/getAllStudents", (req, res) => {
 
 //FIXME: DELETE = D
 app.delete("/api/student/:studentId", (req, res) => {
-
   console.log(req.params.studentId);
-  res.status(200).json({
-    name : "love"
-  })
-  
-})
+  if (req.params.studentId !== undefined) {
+    //  db.collection.deleteOne();
+    //
+    // Model.deleteOne()
+    Student.findByIdAndDelete({
+      _id: req.params.studentId,
+    })
+      .then((d) => {
+        res.status(200).json({
+          msg: "delete called",
+          data: d,
+        });
+      })
+      .catch((e) => {
+        res.status(400).json({
+          error: e,
+        });
+      });
+  } else {
+    res.status(400).json({
+      msg: "studentId is required",
+    });
+  }
+});
+
+//FIXME: Put = Update
+// app.put('/api/student/update',function(req,res){
+
+//   console.log('before remove id',req.body);
+//   const id = req.body._id;
+
+//   delete req.body._id; //remove the key = JS object removal property
+
+
+//   console.log('after remove id ',req.body); //req.body = {k:v:k:v}
+
+//   //Model.findByIdAndUpdate(id, update, callback) // executes
+//   Student.findByIdAndUpdate(id,req.body,(err,data)=>{
+//       console.log(err,data);
+//       if(err === null){
+//           res.status(200).json({
+//               msg:"Updated Successfully"
+//           });
+//       }else{
+//           res.status(400).json({
+//               error:err
+//           });
+//       }
+     
+//   })
+ 
+// });
+
+///AS MOBGOOSE NO LONGER ACCEPTS THE CALLBACK FUNCTION SO:-
+
+app.put('/api/student/update', async (req, res) => {
+  const id = req.body._id;
+  try {
+    const updatedStudent = await Student.findByIdAndUpdate(id, req.body, { new: true });
+    res.status(200).json({
+      msg: "Updated Successfully",
+      data: updatedStudent
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: err.message
+    });
+  }
+});
+
+
 
 //Creating API-ENDPoints-Routes
 // app.get("/", function (req, res) {
